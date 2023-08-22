@@ -1,5 +1,5 @@
-# aws-hcp-consul-terminatinggw
-This repo builds the required AWS Networking, EKS, and HCP Consul 1.16.0 resources to demo the following service mesh use cases.
+# aws-hcp-consul-tg
+This repo builds the required AWS Networking, EKS clusters, and HCP Consul 1.16.0 resources to demo the following service mesh use cases.
 * Use Admin Partitions to manage multiple EKS clusters
 * Support K8s namespaces with Consul namespaces 1/1.
 * Implement a terminating gateway to securely egress from the service mesh.
@@ -94,9 +94,10 @@ This EKS cluster is connected to the new partition `api`. Deploy a new api servi
 ```
 * Review the EKS cluster
 * Review the new Consul Partition in the UI
+* Review EKS Cluster web1 to see health of restarted pods (mgw, web)
 
 ### Walk through terminating GW setup
-The new EKS cluster will deploy a service called `api` that's authorized to make external requests to example.com
+The new EKS cluster will deploy a service called `api` that's authorized to make external requests to example.com.
 ```
 /examples/multi-tenant-dataplane-ap-ns-tgw/terminating-gw-example.com/
 ```
@@ -104,10 +105,10 @@ The new EKS cluster will deploy a service called `api` that's authorized to make
 * terminating-gw.yaml
 * intentions.yaml
 
-### Redeploy `web` to point to the new `api` service to validate egress to example.com
-```
-./examples/multi-tenant-dataplane-ap-ns-tgw/fake-service/web-final/deploy.sh
-```
+In the previous step, we also redeployed `web` to point to the new `api` service hosted in the second EKS cluster. This new `api` service needs to egress from the service mesh to securely access https://example.com.
+
+### Verify `web` -> `api` -> `https-example`
+Refresh browser
 
 ### Delete the https-example intention to verify authZ is required.
 ```
