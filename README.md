@@ -5,7 +5,7 @@ This repo builds the required AWS Networking, EKS, and HCP Consul 1.16.0 resourc
 * Implement a terminating gateway to securely egress from the service mesh.
 
 In this repo you will provision the initial infrastructure, and validate 3 use cases. First, setup a single EKS cluster svc to svc use case, then a multi cluster svc to svc use case, and finally show how a terminating gateway is required for a service to securely egress from the service mesh.
-![Architecture](https://github.com/ppresto/aws-hcp-consul-terminatinggw/blob/main/architecture.png?raw=true)
+![Architecture](https://github.com/ppresto/aws-hcp-consul-tg/blob/main/architecture.png?raw=true)
 
 ## Pre Reqs
 - Consul Enterprise License `./files/consul.lic`
