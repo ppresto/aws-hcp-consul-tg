@@ -61,11 +61,12 @@ The output from this script gives the URL to the Consul UI and root token.  Use 
 Additionally, test the CLI is setup properly by listing the consul members `consul members`.
 
 ## Configure Consul
-### Start - HCP / Consul UI
-Login to the UI and review the Admin Partitions drop down. Partitions support 1-1000s of K8s clusters providing true multi-tenancy for each one.
-* default(Admin Partition) / default(Consul Namespace) - Hosts the HCP Consul Cluster (1-3 servers)
-* web / default - `web` is the partition where the first EKS cluster is connected.
-Read the docs to learn more about [Admin Partitions](https://developer.hashicorp.com/consul/docs/enterprise/admin-partitions).
+### HCP Consul UI
+Login to the UI and review the Admin Partitions drop down.
+* default(Admin Partition) / default(Consul Namespace) - Hosts the HCP SaaS Consul Cluster
+* web / default - In the `web` partition `default` namespace is where the first EKS cluster is connected and consul resources deployed.  When installing the helm chart the Ingress, Mesh, and Terminating gateway are all being enabled.
+
+Admin Partitions support 1-1000s of K8s clusters providing true multi-tenancy for each one.  Read the docs to learn more about [Admin Partitions](https://developer.hashicorp.com/consul/docs/enterprise/admin-partitions).
 
 ### Deploy Services to the first EKS context: `web1`
 Use CLI or K9s and review the empty EKS cluster before deploying services.  If using the scripts in this repo the K8s cluster should have a context alias `web1`.  In the first EKS cluster 2 services will be deployed in their own K8s namespaces to simulate what a large multi-tenant cluster might look like with every service having its own namespace.
