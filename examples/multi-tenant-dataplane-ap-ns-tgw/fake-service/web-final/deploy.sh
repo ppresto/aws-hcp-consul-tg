@@ -5,8 +5,9 @@ CTX1=web1
 deploy() {
     # Output Ingress URL for fake-service
     kubectl config use-context ${CTX1}
+    kubectl delete -f ${SCRIPT_DIR}/
     kubectl apply -f ${SCRIPT_DIR}/
-    kubectl -n consul delete po -l component=mesh-gateway  # delete mgw to reconfigure
+    #kubectl -n consul delete po -l component=mesh-gateway  # delete mgw to reconfigure
     echo
     echo "http://$(kubectl -n consul get svc -l component=ingress-gateway -o json | jq -r '.items[].status.loadBalancer.ingress[].hostname'):8080/ui"
     echo
