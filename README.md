@@ -4,7 +4,11 @@ This repo builds the required AWS Networking, EKS clusters, and HCP Consul 1.16.
 * Support K8s namespaces with Consul namespaces 1/1.
 * Implement a terminating gateway to securely egress from the service mesh.
 
-In this repo you will provision the initial infrastructure, and validate 3 use cases. First, setup a single EKS cluster svc to svc use case, then a multi cluster svc to svc use case, and finally show how a terminating gateway is required for a service to securely egress from the service mesh.
+In this repo you will provision the initial infrastructure, and validate 3 use cases. 
+1. Setup a single EKS cluster svc to svc use case and use an Ingress-Gateway to access the URL.
+2. Add a second EKS cluster with a svc to show how Mesh-Gateways enable svc discovery and routing across EKS clusters.
+3. Configure a Terminating-Gateway to enable a service to securely egress from the service mesh.
+
 ![Architecture](https://github.com/ppresto/aws-hcp-consul-tg/blob/main/architecture.png?raw=true)
 
 ## Pre Reqs
@@ -153,6 +157,10 @@ kubectl apply -f ../../examples/multi-tenant-dataplane-ap-ns-tgw/terminating-gw-
 ```
 Refresh the fake-service UI to see the request to https://example.com succeed.  Click on this link to learn more about the [terminating-gateway](https://developer.hashicorp.com/consul/docs/connect/gateways#terminating-gateways).
 
+### Demo Video
+<video width="320" height="240" controls>
+  <source src="Demo_19min.mp4" type="video/mp4">
+</video>
 ## Clean up
 ```
 ../../examples/multi-tenant-dataplane-ap-ns-tgw/deploy.sh -d
