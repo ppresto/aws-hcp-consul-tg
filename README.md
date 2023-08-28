@@ -157,11 +157,6 @@ kubectl apply -f ../../examples/multi-tenant-dataplane-ap-ns-tgw/terminating-gw-
 ```
 Refresh the fake-service UI to see the request to https://example.com succeed.  Click on this link to learn more about the [terminating-gateway](https://developer.hashicorp.com/consul/docs/connect/gateways#terminating-gateways).
 
-### Demo Video
-<video width="320" height="240" controls>
-  <source src="Demo_19min.mp4" type="video/mp4">
-</video>
-
 ## Clean up
 ```
 ../../examples/multi-tenant-dataplane-ap-ns-tgw/deploy.sh -d
